@@ -5,17 +5,18 @@
 
 #include "ofMain.h"
 #include "ofxXmlSettings.h"
+#include "ofxUI.h"
 
-class testApp : public ofBaseApp{
+class testApp: public ofBaseApp {
 
 public:
 	void setup();
 	void update();
 	void draw();
 
-	void keyPressed  (int key);
+	void keyPressed(int key);
 	void keyReleased(int key);
-	void mouseMoved(int x, int y );
+	void mouseMoved(int x, int y);
 	void mouseDragged(int x, int y, int button);
 	void mousePressed(int x, int y, int button);
 	void mouseReleased(int x, int y, int button);
@@ -26,6 +27,17 @@ public:
 	uint updateTime;
 	bool fullscreen;
 	uint moteCount;
+
+	ofxUICanvas *gui;
+	void exit();
+	void guiEvent(ofxUIEventArgs &e);
+	bool hideGUI;
+
+	ofxUICanvas *gui1;
+	ofxUICanvas *gui2;
+
+	void setGUI1();
+	void setGUI2();
 };
 
 #endif
