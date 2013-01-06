@@ -24,6 +24,7 @@ void testApp::setup() {
 //--------------------------------------------------------------
 void testApp::update() {
 	spaceReport.update();
+	spaceBroadcast.update();
 
 }
 

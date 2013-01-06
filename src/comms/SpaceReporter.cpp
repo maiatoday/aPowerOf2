@@ -13,6 +13,7 @@ SpaceReporter::SpaceReporter() {
 	weConnected = false;
 	connectTime = ofGetElapsedTimeMillis();
 	deltaTime = ofGetElapsedTimeMillis() - connectTime;
+	updateTime = 5000;
 }
 
 SpaceReporter::~SpaceReporter() {
@@ -22,7 +23,7 @@ SpaceReporter::~SpaceReporter() {
 void SpaceReporter::setup() {
 	if (XML.loadFile("mySettings.xml")) {
 			serverAddress = XML.getValue("NETWORK:SERVER_ADDRESS", "localhost");
-			updateTime = XML.getValue("NETWORK:UPDATE_INTERVAL", 2000);
+			updateTime = XML.getValue("NETWORK:UPDATE_INTERVAL", 5000);
 			serverPort = XML.getValue("NETWORK:SERVER_PORT", 11999);
 	}
 	//are we connected to the server - if this fails we
@@ -45,7 +46,7 @@ void SpaceReporter::update() {
 		//if we are not connected lets try and reconnect every 5 seconds
 		deltaTime = ofGetElapsedTimeMillis() - connectTime;
 
-		if( deltaTime > 5000 ){
+		if( deltaTime > updateTime){
 			weConnected = ofxTCPClient::setup(serverAddress, serverPort);
 			connectTime = ofGetElapsedTimeMillis();
 		}

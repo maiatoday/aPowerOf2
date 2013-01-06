@@ -15,6 +15,7 @@ public:
 	SpaceBroadcaster();
 	virtual ~SpaceBroadcaster();
 	void setup();
+	void update();
 private:
 	ofxXmlSettings XML;
 	string serverAddress;
