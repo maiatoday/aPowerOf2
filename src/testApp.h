@@ -6,6 +6,8 @@
 #include "ofMain.h"
 #include "ofxXmlSettings.h"
 #include "ofxUI.h"
+#include "comms/SpaceBroadcaster.h"
+#include "comms/SpaceReporter.h"
 
 class testApp: public ofBaseApp {
 
@@ -23,8 +25,6 @@ public:
 	void windowResized(int w, int h);
 
 	ofxXmlSettings XML;
-	string serverAddress;
-	uint updateTime;
 	bool fullscreen;
 	uint moteCount;
 
@@ -38,6 +38,15 @@ public:
 
 	void setGUI1();
 	void setGUI2();
+
+	SpaceBroadcaster spaceBroadcast;
+	SpaceReporter spaceReport;
+	string msgTx, msgRx;
+
+	float counter;
+	int connectTime;
+	int deltaTime;
+
 };
 
 #endif
