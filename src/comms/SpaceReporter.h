@@ -16,12 +16,17 @@ public:
 	SpaceReporter();
 	virtual ~SpaceReporter();
 	void setup();
+	void update();
 private:
 	bool weConnected;
 	ofxXmlSettings XML;
 	string serverAddress;
 	uint updateTime;
 	uint serverPort;
+
+	float counter;
+	int connectTime;
+	int deltaTime;
 };
 
 #endif /* SPACEREPORTER_H_ */

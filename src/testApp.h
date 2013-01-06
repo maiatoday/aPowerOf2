@@ -43,9 +43,7 @@ public:
 	SpaceReporter spaceReport;
 	string msgTx, msgRx;
 
-	float counter;
-	int connectTime;
-	int deltaTime;
+
 
 };
 

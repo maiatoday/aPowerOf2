@@ -23,6 +23,7 @@ void testApp::setup() {
 
 //--------------------------------------------------------------
 void testApp::update() {
+	spaceReport.update();
 
 }
 
@@ -34,21 +35,12 @@ void testApp::draw() {
 //--------------------------------------------------------------
 void testApp::keyPressed(int key) {
 
-	float smooth;
-
 	switch (key) {
-	case 's':
-	case 'S':
-
-		break;
 	case 'p':
 		gui->setDrawWidgetPadding(true);
 		break;
 	case 'P':
 		gui->setDrawWidgetPadding(false);
-		break;
-	case 't':
-	case 'T':
 		break;
 	case 'h':
 	case 'H':
@@ -60,45 +52,6 @@ void testApp::keyPressed(int key) {
 	case 'F':
 		fullscreen = !fullscreen;
 		ofSetFullscreen(fullscreen);
-		break;
-	case 'm':
-	case 'M':
-		break;
-	case 'c':
-	case 'C':
-		break;
-	case 'b':
-	case 'B':
-		break;
-	case '9':
-	case '(':
-		break;
-	case '0':
-	case ')':
-		break;
-	case '[':
-		break;
-	case ']':
-		break;
-	case ';':
-	case ':':
-		break;
-	case '\'':
-	case '\"':
-	case '>':
-	case '.':
-	case '<':
-	case ',':
-		break;
-
-	case '+':
-	case '=':
-		break;
-
-	case '-':
-	case '_':
-		break;
-	case 'r':
 		break;
 	default:
 		break;
