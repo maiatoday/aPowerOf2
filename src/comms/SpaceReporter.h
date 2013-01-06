@@ -21,8 +21,8 @@ private:
 	bool weConnected;
 	ofxXmlSettings XML;
 	string serverAddress;
-	uint updateTime;
-	uint serverPort;
+	unsigned int updateTime;
+	unsigned int serverPort;
 
 	float counter;
 	int connectTime;

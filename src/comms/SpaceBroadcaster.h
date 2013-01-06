@@ -19,7 +19,7 @@ public:
 private:
 	ofxXmlSettings XML;
 	string serverAddress;
-	uint serverPort;
+	unsigned int serverPort;
 };
 
 #endif /* SPACEBROADCASTER_H_ */
