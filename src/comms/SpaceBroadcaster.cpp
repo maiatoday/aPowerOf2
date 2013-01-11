@@ -6,7 +6,7 @@
  */
 
 #include "SpaceBroadcaster.h"
-
+namespace comms {
 SpaceBroadcaster::SpaceBroadcaster() {
 	serverPort = 11999;
 	serverAddress = "127.0.0.1";
@@ -39,3 +39,4 @@ void SpaceBroadcaster::update() {
 						+ ofToString(getClientPort(i)));
 	}
 }
+} /* namespace comms */

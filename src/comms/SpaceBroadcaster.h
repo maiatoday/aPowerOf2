@@ -9,7 +9,7 @@
 #define SPACEBROADCASTER_H_
 #include "ofxNetwork.h"
 #include "ofxXmlSettings.h"
-
+namespace comms {
 class SpaceBroadcaster: public ofxTCPServer {
 public:
 	SpaceBroadcaster();
@@ -21,5 +21,5 @@ private:
 	string serverAddress;
 	unsigned int serverPort;
 };
-
+} /* namespace comms */
 #endif /* SPACEBROADCASTER_H_ */

@@ -11,6 +11,7 @@
 #include "ofxNetwork.h"
 #include "ofxXmlSettings.h"
 
+namespace comms {
 class SpaceReporter: public ofxTCPClient {
 public:
 	SpaceReporter();
@@ -28,5 +29,5 @@ private:
 	int connectTime;
 	int deltaTime;
 };
-
+} /* namespace comms */
 #endif /* SPACEREPORTER_H_ */

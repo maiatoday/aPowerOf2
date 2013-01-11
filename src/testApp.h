@@ -39,8 +39,8 @@ public:
 	void setGUI1();
 	void setGUI2();
 
-	SpaceBroadcaster spaceBroadcast;
-	SpaceReporter spaceReport;
+	comms::SpaceBroadcaster spaceBroadcast;
+	comms::SpaceReporter spaceReport;
 	string msgTx, msgRx;
 
 
