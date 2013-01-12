@@ -8,6 +8,8 @@
 #ifndef SPACEMESSAGE_H_
 #define SPACEMESSAGE_H_
 #include "ofConstants.h"
+
+#define MINMSG_LENGTH 6
 #define MSG_UNKNOWN 0x0000
 
 // Messages originating from the Server

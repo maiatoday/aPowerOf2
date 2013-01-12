@@ -20,6 +20,7 @@ private:
 	ofxXmlSettings XML;
 	string serverAddress;
 	unsigned int serverPort;
+
 };
 } /* namespace comms */
 #endif /* SPACEBROADCASTER_H_ */

@@ -24,7 +24,7 @@ SpaceReporter::~SpaceReporter() {
 void SpaceReporter::setup() {
 	if (XML.loadFile("mySettings.xml")) {
 		serverAddress = XML.getValue("NETWORK:SERVER_ADDRESS", "localhost");
-		updateTime = XML.getValue("NETWORK:UPDATE_INTERVAL", 5000);
+		updateTime = XML.getValue("NETWORK:UPDATE_INTERVAL", 1000);
 		serverPort = XML.getValue("NETWORK:SERVER_PORT", 11999);
 	}
 	//are we connected to the server - if this fails we
@@ -35,23 +35,27 @@ void SpaceReporter::setup() {
 }
 
 void SpaceReporter::update() {
-	if(weConnected){
-		//		tcpClient.send(msgTx);
-		//
-		//		//if data has been sent lets update our text
-		//		string str = tcpClient.receive();
-		//		if( str.length() > 0 ){
-		//			msgRx = str;
-		//		}
-	}else{
-		//if we are not connected lets try and reconnect every 5 seconds
-		deltaTime = ofGetElapsedTimeMillis() - connectTime;
-
-		if( deltaTime > updateTime){
+	//do something on a regular interval, either retry connection or send a message
+	deltaTime = ofGetElapsedTimeMillis() - connectTime;
+	if (deltaTime > updateTime) {
+		connectTime = ofGetElapsedTimeMillis();
+		if (weConnected) {
+			send("hello server");
+			string answer = receive();
+			if (!answer.empty()) {
+				ofLog(OF_LOG_NOTICE, "client: *** server said %s",
+						answer.c_str());
+			}
+			//		tcpClient.send(msgTx);
+			//
+			//		//if data has been sent lets update our text
+			//		string str = tcpClient.receive();
+			//		if( str.length() > 0 ){
+			//			msgRx = str;
+			//		}
+		} else {
 			weConnected = ofxTCPClient::setup(serverAddress, serverPort);
-			connectTime = ofGetElapsedTimeMillis();
 		}
-
 	}
 }
 

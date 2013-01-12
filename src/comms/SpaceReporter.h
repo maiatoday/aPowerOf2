@@ -26,8 +26,8 @@ private:
 	unsigned int serverPort;
 
 	float counter;
-	int connectTime;
-	int deltaTime;
+	unsigned int connectTime;
+	unsigned int deltaTime;
 };
 } /* namespace comms */
 #endif /* SPACEREPORTER_H_ */

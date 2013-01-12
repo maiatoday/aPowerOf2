@@ -6,6 +6,8 @@
  */
 
 #include "SpaceBroadcaster.h"
+#include "SpaceMessage.h"
+
 namespace comms {
 SpaceBroadcaster::SpaceBroadcaster() {
 	serverPort = 11999;
@@ -29,14 +31,18 @@ void SpaceBroadcaster::setup() {
 }
 
 void SpaceBroadcaster::update() {
-//	string logString = "connected clients ";
-//	logString.append(ofToString(getNumClients()));
-//	ofLogNotice(logString.c_str());
-	//for each client lets send them a message letting them know what port they are connected on
+//	ofLog(OF_LOG_NOTICE, "num connected clients  %d ", getNumClients());
+	//for each client lets answer their message
 	for (int i = 0; i < getNumClients(); i++) {
-		send(i,
-				"hello client - you are connected on port - "
-						+ ofToString(getClientPort(i)));
+		string msg = receive(i);
+		if (!msg.empty()) {
+			send(i,
+					"hello client- you are connected on port - "
+							+ ofToString(getClientPort(i)));
+			ofLog(OF_LOG_NOTICE, "server: the msg from client %d is %s", i,
+					msg.c_str());
+		}
 	}
 }
+
 } /* namespace comms */
