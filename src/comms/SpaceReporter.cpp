@@ -51,6 +51,7 @@ void SpaceReporter::update() {
 					string res = json.getValueS(root, "fg", "");
 					ofLog(OF_LOG_NOTICE, "client: *** fg answer %s",
 											res.c_str());
+					json_decref(root);
 				}
 				}
 				//		tcpClient.send(msgTx);

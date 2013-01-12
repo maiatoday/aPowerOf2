@@ -44,7 +44,7 @@ void SpaceBroadcaster::update() {
 			char* buf = json_dumps(root, 0);
 			send(i, buf);
 			free(buf);
-//json_decref(root); //TODO must this be called?
+json_decref(root); //TODO must this be called?
 			ofLog(OF_LOG_NOTICE, "server: the msg from client %d is %s", i,
 					msg.c_str());
 		}
