@@ -36,9 +36,15 @@ void SpaceBroadcaster::update() {
 	for (int i = 0; i < getNumClients(); i++) {
 		string msg = receive(i);
 		if (!msg.empty()) {
-			send(i,
-					"hello client- you are connected on port - "
-							+ ofToString(getClientPort(i)));
+//			send(i,
+//					"hello client- you are connected on port - "
+//							+ ofToString(getClientPort(i)));
+//			send(i, "{\"fg\": \"ttt\"}");
+			json_t* root = json_pack("{s:s}", "fg", "ttt");
+			char* buf = json_dumps(root, 0);
+			send(i, buf);
+			free(buf);
+//json_decref(root); //TODO must this be called?
 			ofLog(OF_LOG_NOTICE, "server: the msg from client %d is %s", i,
 					msg.c_str());
 		}

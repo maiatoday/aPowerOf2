@@ -45,19 +45,26 @@ void SpaceReporter::update() {
 			if (!answer.empty()) {
 				ofLog(OF_LOG_NOTICE, "client: *** server said %s",
 						answer.c_str());
+				root = json_loads(answer.c_str(), 0, &error);
+
+				if (root) {
+					string res = json.getValueS(root, "fg", "");
+					ofLog(OF_LOG_NOTICE, "client: *** fg answer %s",
+											res.c_str());
+				}
+				}
+				//		tcpClient.send(msgTx);
+				//
+				//		//if data has been sent lets update our text
+				//		string str = tcpClient.receive();
+				//		if( str.length() > 0 ){
+				//			msgRx = str;
+				//		}
+			} else {
+				weConnected = ofxTCPClient::setup(serverAddress, serverPort);
 			}
-			//		tcpClient.send(msgTx);
-			//
-			//		//if data has been sent lets update our text
-			//		string str = tcpClient.receive();
-			//		if( str.length() > 0 ){
-			//			msgRx = str;
-			//		}
-		} else {
-			weConnected = ofxTCPClient::setup(serverAddress, serverPort);
 		}
 	}
-}
 
 } /* namespace comms */
 

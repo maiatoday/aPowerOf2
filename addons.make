@@ -3,3 +3,4 @@ ofxXmlSettings
 ofxOpenNI
 ofxNetwork
 ofxUI
+ofxJansson
