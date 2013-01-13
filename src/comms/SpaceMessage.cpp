@@ -8,55 +8,39 @@
 #include "SpaceMessage.h"
 
 namespace comms {
+/**
+ * Basic construct for when we are building a message
+ */
 SpaceMessage::SpaceMessage() {
-	this->id = MSG_UNKNOWN;
-	serverProcess = false;
-	length = sizeof(id) + sizeof(length); // minimum length
+//	root = NULL;
+	msgId = "";
+	root = json_pack("{s:s}", "fg", "ttt"); // test should be a specific one for a specific message
 }
 
-SpaceMessage::SpaceMessage(unsigned int id) {
-	this->id = id;
-	serverProcess = false;
-	length = sizeof(id) + sizeof(length); // minimum length
+/**
+ * Constructor for when we received a message
+ */
+SpaceMessage::SpaceMessage(const string message) {
+	root = json_loads(message.c_str(), 0, &error);
+	msgId = json.getValueS(root, MSGID_KEY, "");
 }
 
 SpaceMessage::~SpaceMessage() {
-	// TODO Auto-generated destructor stub
-}
-
-void SpaceMessage::getBytes(char * pbuffer, unsigned int buflen) {
-
+	if (root) {
+		json_decref(root);
+	}
 }
 
 string SpaceMessage::toString() {
-	string reply = "";
-	switch (id) {
-	case SMSG_NODE_ID_INFO:
-		isServerProcess()? reply = "server says ":reply = "client hears ";
-		reply.append("NODE_ID_INFO");
-		break;
-	case SMSG_ALL_SPACE_INFO:
-		isServerProcess()? reply = "server says ":reply = "client hears ";
-		reply.append("ALL_SPACE_INFO");
-		break;
-	case CMSG_NODE_SPACE_INFO:
-		isServerProcess()? reply = "server hears ":reply = "client says ";
-		reply.append("NODE_SPACE_INFO");
-		break;
-	case CMSG_HELLO:
-		isServerProcess()? reply = "server hears ":reply = "client says ";
-		reply.append("HELLO");
-		break;
-	default:
-		reply = "unknown message";
-		break;
 
+	string reply = "";
+	if (root) {
+		char* buf = json_dumps(root, 0);
+		reply.append(buf);
+		free(buf);
 	}
 	return reply;
 }
 
-void SpaceMessage::addBytes(char *pbuffer, unsigned int buflen,
-		unsigned int offset) {
-}
 } /* namespace comms */
 

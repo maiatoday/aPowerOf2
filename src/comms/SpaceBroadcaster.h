@@ -21,6 +21,7 @@ private:
 	ofxXmlSettings XML;
 	string serverAddress;
 	unsigned int serverPort;
+	void handleMessage(const int i, const string msg);
 
 };
 } /* namespace comms */

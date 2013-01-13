@@ -8,51 +8,33 @@
 #ifndef SPACEMESSAGE_H_
 #define SPACEMESSAGE_H_
 #include "ofConstants.h"
+#include "ofxJansson.h"
+#include "jansson.h"
 
-#define MINMSG_LENGTH 6
-#define MSG_UNKNOWN 0x0000
+#define MSGID_KEY "msgId"
 
-// Messages originating from the Server
-#define SMSG_NODE_ID_INFO 0x1001
-#define SMSG_ALL_SPACE_INFO 0x1002
-
-// Messages originating from the Client
-#define CMSG_HELLO 0x0001
-#define CMSG_NODE_SPACE_INFO 0x0002
 namespace comms {
 class SpaceMessage {
 public:
 	SpaceMessage();
-	SpaceMessage(unsigned int id);
+	SpaceMessage(const string msg);
 	virtual ~SpaceMessage();
 	virtual string toString();
-	virtual void getBytes(char * pbuffer, unsigned int buflen); // TODO return the byte array
 
-	unsigned int getId() const {
-		return id;
+	const string& getMsgId() const {
+		return msgId;
 	}
 
-	void setId(unsigned int id) {
-		this->id = id;
-	}
-
-	unsigned int getLength() const {
-		return length;
-	}
-	void addBytes(char *pbuffer, unsigned int buflen, unsigned int offset);
-
-	bool isServerProcess() const {
-		return serverProcess;
-	}
-
-	void setServerProcess(bool serverProcess) {
-		this->serverProcess = serverProcess;
+	void setMsgId(const string& msgId) {
+		this->msgId = msgId;
 	}
 
 protected:
-	unsigned int id;
-	unsigned int length;
-	bool serverProcess;
+	json_t *root;
+	json_error_t error;
+	string msgId;
+
+	ofxJansson json;
 };
 
 } /* namespace comms */
