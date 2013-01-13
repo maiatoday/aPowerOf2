@@ -22,7 +22,7 @@ SpaceMessage::SpaceMessage() {
  */
 SpaceMessage::SpaceMessage(const string message) {
 	root = json_loads(message.c_str(), 0, &error);
-	msgId = json.getValueS(root, MSGID_KEY, "");
+	msgId = getValueS(root, MSGID_KEY, "");
 }
 
 SpaceMessage::~SpaceMessage() {
@@ -34,7 +34,7 @@ SpaceMessage::~SpaceMessage() {
 string SpaceMessage::toString() {
 
 	string reply = "";
-	if (root) {
+	if (!json_is_null(root)) {
 		char* buf = json_dumps(root, 0);
 		reply.append(buf);
 		free(buf);

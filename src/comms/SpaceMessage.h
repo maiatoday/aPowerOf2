@@ -14,7 +14,7 @@
 #define MSGID_KEY "msgId"
 
 namespace comms {
-class SpaceMessage {
+class SpaceMessage: public ofxJansson {
 public:
 	SpaceMessage();
 	SpaceMessage(const string msg);
@@ -34,7 +34,7 @@ protected:
 	json_error_t error;
 	string msgId;
 
-	ofxJansson json;
+//	ofxJansson json;
 };
 
 } /* namespace comms */

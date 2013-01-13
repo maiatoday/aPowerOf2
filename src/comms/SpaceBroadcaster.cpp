@@ -48,6 +48,14 @@ void SpaceBroadcaster::handleMessage(const int i, const string msg) {
 
 	SpaceMessage* inmsg = new SpaceMessage(msg);
 	SpaceMessage* outmsg = new SpaceMessage();
+//	switch(inmsg->getMsgId()) {
+//	case "hello":
+//		outmsg = new SpaceMessage();
+//		break;
+//	case "mySpaceInfo":
+//		outmsg = new SpaceMessage();
+//		break;
+//	}
 //	json_t* root = json_pack("{s:s}", "fg", "ttt");
 	send(i, outmsg->toString());
 	delete(inmsg);
