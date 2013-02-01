@@ -182,10 +182,11 @@ void testApp::getUserCenters(ofxUserGenerator &userGenerator) {
 	for (int i = 0; i < numUsers; i++) {
 		ofxTrackedUser* user = userGenerator.getTrackedUser(i);
 		ofPoint point;
+		point.set(10,10,10);
 		// TODO the coordinates are in the wrong format!! convert from world to projected
-		point.x = user->center.X;
-		point.y = user->center.Y;
-		point.z = user->center.Z;
+//		point.x = user->center.X;
+//		point.y = user->center.Y;
+//		point.z = user->center.Z;
 		userCenters.push_back(point);
 	}
 }

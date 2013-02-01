@@ -50,6 +50,7 @@ void SpaceReporter::update(vector<ofPoint>& userCenters, ofColor foreground) {
 				outmsg->makeHelloResponse();
 				sendHello = false;
 			} else {
+				ofLog(OF_LOG_NOTICE, "client: *** tracked %d users", userCenters.size());
 				outmsg->makeSpaceInfoResponse(userCenters, foreground);
 			}
 			send(outmsg->toString());
