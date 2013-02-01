@@ -26,8 +26,9 @@ RxSpaceMessage::RxSpaceMessage(const string message) {
 }
 
 RxSpaceMessage::~RxSpaceMessage() {
-	// TODO Auto-generated destructor stub
-}//--------- receive message methods  -----------------
+
+}
+//--------- receive message methods  -----------------
 
 void RxSpaceMessage::extractMessageContents() {
 
