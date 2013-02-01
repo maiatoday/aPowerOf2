@@ -30,7 +30,7 @@ private:
 	float counter;
 	unsigned int connectTime;
 	unsigned int deltaTime;
-	bool helloSent;
+	bool sendHello;
 };
 } /* namespace comms */
 #endif /* SPACEREPORTER_H_ */

@@ -15,7 +15,7 @@ SpaceReporter::SpaceReporter() {
 	connectTime = ofGetElapsedTimeMillis();
 	deltaTime = ofGetElapsedTimeMillis() - connectTime;
 	updateTime = 5000;
-	helloSent = false;
+	sendHello = true;
 }
 
 SpaceReporter::~SpaceReporter() {
@@ -42,11 +42,11 @@ void SpaceReporter::update() {
 		connectTime = ofGetElapsedTimeMillis();
 		if (weConnected) {
 			TxSpaceMessage* outmsg = new TxSpaceMessage();
-			if (helloSent) {
-				outmsg->makeSpaceInfoResponse();
-			} else {
+			if (sendHello) {
 				outmsg->makeHelloResponse();
-				helloSent = true;
+				sendHello = false;
+			} else {
+				outmsg->makeSpaceInfoResponse();
 			}
 			send(outmsg->toString());
 			delete outmsg;
@@ -61,7 +61,7 @@ void SpaceReporter::update() {
 				delete inMsg;
 			}
 		} else {
-			helloSent = false;
+			sendHello = true;
 			weConnected = ofxTCPClient::setup(serverAddress, serverPort);
 		}
 	}
