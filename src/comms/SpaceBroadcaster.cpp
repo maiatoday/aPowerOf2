@@ -46,8 +46,8 @@ void SpaceBroadcaster::handleMessage(const int i, const string msg) {
 	ofLog(OF_LOG_NOTICE, "server: the msg from client %d is %s", i,
 				msg.c_str());
 
-	SpaceMessage* inmsg = new SpaceMessage(msg);
-	SpaceMessage* outmsg = new SpaceMessage();
+	RxSpaceMessage* inmsg = new RxSpaceMessage(msg);
+	TxSpaceMessage* outmsg = new TxSpaceMessage();
 	switch(inmsg->getMsgId()) {
 	case MSG_ID_HELLO:
 		outmsg->makeHelloResponse();

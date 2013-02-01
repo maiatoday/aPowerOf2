@@ -21,9 +21,9 @@ namespace comms {
 class SpaceMessage: public ofxJansson {
 public:
 	SpaceMessage();
-	SpaceMessage(const string msg);
 	virtual ~SpaceMessage();
 	virtual string toString();
+	void setMsgIdFromString();
 
 	const string& getMsgIdString() const {
 		return msgIdString;
@@ -31,15 +31,13 @@ public:
 	int getMsgId() const {
 		return msgId;
 	}
-	void makeHelloResponse();
-	void makeSpaceInfoResponse();
+
 
 protected:
 	json_t *root;
 	json_error_t error;
 	string msgIdString;
 	int msgId;
-	void setMsgIdFromString();
 
 //	ofxJansson json;
 };

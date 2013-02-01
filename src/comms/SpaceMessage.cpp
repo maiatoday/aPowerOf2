@@ -8,23 +8,14 @@
 #include "SpaceMessage.h"
 
 namespace comms {
-/**
- * Basic construct for when we are building a message
- */
+
 SpaceMessage::SpaceMessage() {
 //	root = NULL;
 	msgIdString = "";
 	msgId = MSG_ID_UNKNOWN;
 }
 
-/**
- * Constructor for when we received a message
- */
-SpaceMessage::SpaceMessage(const string message) {
-	root = json_loads(message.c_str(), 0, &error);
-	msgIdString = getValueS(root, MSGID_KEY, "");
-	setMsgIdFromString();
-}
+
 
 SpaceMessage::~SpaceMessage() {
 	if (root) {
@@ -54,12 +45,7 @@ void SpaceMessage::setMsgIdFromString() {
 
 }
 
-void SpaceMessage::makeHelloResponse() {
-	root = json_pack("{s:s}", MSGID_KEY, "hello"); // test should be a specific one for a specific message
-}
-void SpaceMessage::makeSpaceInfoResponse() {
-	root = json_pack("{s:s}", MSGID_KEY, "spaceInfo"); // test should be a specific one for a specific message
-}
+
 
 } /* namespace comms */
 

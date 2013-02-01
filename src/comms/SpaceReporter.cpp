@@ -40,7 +40,7 @@ void SpaceReporter::update() {
 	if (deltaTime > updateTime) {
 		connectTime = ofGetElapsedTimeMillis();
 		if (weConnected) {
-			SpaceMessage* outmsg = new SpaceMessage();
+			TxSpaceMessage* outmsg = new TxSpaceMessage();
 			outmsg->makeHelloResponse();
 			send(outmsg->toString());
 			delete outmsg;
