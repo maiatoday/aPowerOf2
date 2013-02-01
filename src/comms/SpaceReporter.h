@@ -11,6 +11,7 @@
 #include "ofxNetwork.h"
 #include "ofxXmlSettings.h"
 #include "ofxJansson.h"
+#include "SpaceMessage.h"
 
 namespace comms {
 class SpaceReporter: public ofxTCPClient {

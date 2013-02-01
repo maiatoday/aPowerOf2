@@ -13,6 +13,10 @@
 
 #define MSGID_KEY "msgId"
 
+#define MSG_ID_UNKNOWN 0
+#define MSG_ID_HELLO 1
+#define MSG_ID_SPACE_INFO 2
+
 namespace comms {
 class SpaceMessage: public ofxJansson {
 public:
@@ -21,18 +25,21 @@ public:
 	virtual ~SpaceMessage();
 	virtual string toString();
 
-	const string& getMsgId() const {
+	const string& getMsgIdString() const {
+		return msgIdString;
+	}
+	int getMsgId() const {
 		return msgId;
 	}
-
-	void setMsgId(const string& msgId) {
-		this->msgId = msgId;
-	}
+	void makeHelloResponse();
+	void makeSpaceInfoResponse();
 
 protected:
 	json_t *root;
 	json_error_t error;
-	string msgId;
+	string msgIdString;
+	int msgId;
+	void setMsgIdFromString();
 
 //	ofxJansson json;
 };

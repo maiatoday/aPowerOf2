@@ -13,8 +13,8 @@ namespace comms {
  */
 SpaceMessage::SpaceMessage() {
 //	root = NULL;
-	msgId = "";
-	root = json_pack("{s:s}", "fg", "ttt"); // test should be a specific one for a specific message
+	msgIdString = "";
+	msgId = MSG_ID_UNKNOWN;
 }
 
 /**
@@ -22,7 +22,8 @@ SpaceMessage::SpaceMessage() {
  */
 SpaceMessage::SpaceMessage(const string message) {
 	root = json_loads(message.c_str(), 0, &error);
-	msgId = getValueS(root, MSGID_KEY, "");
+	msgIdString = getValueS(root, MSGID_KEY, "");
+	setMsgIdFromString();
 }
 
 SpaceMessage::~SpaceMessage() {
@@ -40,6 +41,24 @@ string SpaceMessage::toString() {
 		free(buf);
 	}
 	return reply;
+}
+
+void SpaceMessage::setMsgIdFromString() {
+	if (msgIdString == "hello") {
+		msgId = MSG_ID_HELLO;
+	} else if (msgIdString == "spaceInfo") {
+		msgId = MSG_ID_SPACE_INFO;
+	} else {
+		msgId = MSG_ID_UNKNOWN;
+	}
+
+}
+
+void SpaceMessage::makeHelloResponse() {
+	root = json_pack("{s:s}", MSGID_KEY, "hello"); // test should be a specific one for a specific message
+}
+void SpaceMessage::makeSpaceInfoResponse() {
+	root = json_pack("{s:s}", MSGID_KEY, "spaceInfo"); // test should be a specific one for a specific message
 }
 
 } /* namespace comms */

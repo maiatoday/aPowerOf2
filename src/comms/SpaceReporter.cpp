@@ -40,7 +40,10 @@ void SpaceReporter::update() {
 	if (deltaTime > updateTime) {
 		connectTime = ofGetElapsedTimeMillis();
 		if (weConnected) {
-			send("hello server");
+			SpaceMessage* outmsg = new SpaceMessage();
+			outmsg->makeHelloResponse();
+			send(outmsg->toString());
+			delete outmsg;
 			string answer = receive();
 			if (!answer.empty()) {
 				ofLog(OF_LOG_NOTICE, "client: *** server said %s",
@@ -48,8 +51,8 @@ void SpaceReporter::update() {
 				root = json_loads(answer.c_str(), 0, &error);
 
 				if (root) {
-					string res = json.getValueS(root, "fg", "");
-					ofLog(OF_LOG_NOTICE, "client: *** fg answer %s",
+					string res = json.getValueS(root, "msgId", "");
+					ofLog(OF_LOG_NOTICE, "client: *** msgId answer %s",
 											res.c_str());
 					json_decref(root);
 				}
