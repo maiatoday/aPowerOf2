@@ -35,21 +35,27 @@ void SpaceReporter::setup() {
 	setVerbose(true);
 }
 
-void SpaceReporter::update() {
+/**
+ * update with the latest values. At regular intervals this info will be sent to the server
+ */
+void SpaceReporter::update(vector<ofPoint>& userCenters, ofColor foreground) {
 	//do something on a regular interval, either retry connection or send a message
 	deltaTime = ofGetElapsedTimeMillis() - connectTime;
 	if (deltaTime > updateTime) {
 		connectTime = ofGetElapsedTimeMillis();
 		if (weConnected) {
+			//say something
 			TxSpaceMessage* outmsg = new TxSpaceMessage();
 			if (sendHello) {
 				outmsg->makeHelloResponse();
 				sendHello = false;
 			} else {
-				outmsg->makeSpaceInfoResponse();
+				outmsg->makeSpaceInfoResponse(userCenters, foreground);
 			}
 			send(outmsg->toString());
 			delete outmsg;
+
+			//get and answer
 			string answer = receive();
 			if (!answer.empty()) {
 				ofLog(OF_LOG_NOTICE, "client: *** server said %s",
@@ -58,6 +64,7 @@ void SpaceReporter::update() {
 
 				ofLog(OF_LOG_NOTICE, "client: *** msgId answer %s",
 						inMsg->getMsgIdString().c_str());
+				// get info from inMsg and save it somewhere so testApp can ask us
 				delete inMsg;
 			}
 		} else {

@@ -28,6 +28,8 @@ public:
 	ofxXmlSettings XML;
 	bool fullscreen;
 	uint moteCount;
+	ofColor mainDrawColor;
+	vector<ofPoint> userCenters;
 
 	ofxUICanvas *gui;
 	void exit();
@@ -47,6 +49,9 @@ public:
 	/*** kinect stuff ****/
 	void	setupRecording(string _filename = "");
 	void	setupPlayback(string _filename);
+	void setupKinect();
+	void updateKinect();
+	void drawKinect();
 	string	generateFileName();
 
 	bool				isLive, isTracking, isRecording, isCloud, isCPBkgnd, isMasking;

@@ -41,7 +41,9 @@ void SpaceBroadcaster::update() {
 	}
 }
 
-
+/**
+ * handle the incoming messages by responding with the correct response
+ */
 void SpaceBroadcaster::handleMessage(const int i, const string msg) {
 	ofLog(OF_LOG_NOTICE, "server: the msg from client %d is %s", i,
 				msg.c_str());
@@ -53,7 +55,7 @@ void SpaceBroadcaster::handleMessage(const int i, const string msg) {
 		outmsg->makeHelloResponse();
 		break;
 	case MSG_ID_SPACE_INFO:
-		outmsg->makeSpaceInfoResponse();
+		outmsg->makeSpaceInfoAllResponse();
 		break;
 	}
 	send(i, outmsg->toString());

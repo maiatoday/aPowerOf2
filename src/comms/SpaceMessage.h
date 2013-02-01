@@ -16,8 +16,10 @@
 #define MSG_ID_UNKNOWN 0
 #define MSG_ID_HELLO 1
 #define MSG_ID_SPACE_INFO 2
+#define MSG_ID_SPACE_INFO_ALL 3
 #define MSG_ID_HELLO_STRING "hello"
 #define MSG_ID_SPACE_INFO_STRING "spaceInfo"
+#define MSG_ID_SPACE_INFO_ALL_STRING "spaceInfoAll"
 
 namespace comms {
 class SpaceMessage: public ofxJansson {

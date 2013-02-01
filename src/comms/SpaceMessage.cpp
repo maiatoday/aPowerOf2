@@ -39,6 +39,8 @@ void SpaceMessage::setMsgIdFromString() {
 		msgId = MSG_ID_HELLO;
 	} else if (msgIdString == MSG_ID_SPACE_INFO_STRING) {
 		msgId = MSG_ID_SPACE_INFO;
+	} else if (msgIdString == MSG_ID_SPACE_INFO_ALL_STRING) {
+		msgId = MSG_ID_SPACE_INFO_ALL;
 	} else {
 		msgId = MSG_ID_UNKNOWN;
 	}

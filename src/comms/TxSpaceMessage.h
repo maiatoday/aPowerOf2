@@ -9,6 +9,8 @@
 #define TXSPACEMESSAGE_H_
 
 #include "SpaceMessage.h"
+#include "ofPoint.h"
+#include "ofColor.h"
 
 namespace comms {
 
@@ -16,8 +18,12 @@ class TxSpaceMessage: public comms::SpaceMessage {
 public:
 	TxSpaceMessage();
 	virtual ~TxSpaceMessage();
+	// Reporter Tx Messages - client
+	void makeSpaceInfoResponse(vector<ofPoint>& userCenters, ofColor foreground);
+
+	// Broadcaster Tx Messages - server
 	void makeHelloResponse();
-	void makeSpaceInfoResponse();
+	void makeSpaceInfoAllResponse();
 };
 
 } /* namespace comms */

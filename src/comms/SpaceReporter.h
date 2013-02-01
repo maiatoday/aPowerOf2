@@ -19,7 +19,7 @@ public:
 	SpaceReporter();
 	virtual ~SpaceReporter();
 	void setup();
-	void update();
+	void update(vector<ofPoint>& userCenters, ofColor foreground);
 private:
 	bool weConnected;
 	ofxXmlSettings XML;

@@ -25,8 +25,14 @@ void TxSpaceMessage::makeHelloResponse() {
 	root = json_pack("{s:s}", MSGID_KEY, msgIdString.c_str());
 }
 
-void TxSpaceMessage::makeSpaceInfoResponse() {
+void TxSpaceMessage::makeSpaceInfoResponse(vector<ofPoint>& userCenters, ofColor foreground) {
 	msgIdString = MSG_ID_SPACE_INFO_STRING;
+	setMsgIdFromString();
+	root = json_pack("{s:s}", MSGID_KEY, msgIdString.c_str());
+}
+
+void TxSpaceMessage::makeSpaceInfoAllResponse() {
+	msgIdString = MSG_ID_SPACE_INFO_ALL_STRING;
 	setMsgIdFromString();
 	root = json_pack("{s:s}", MSGID_KEY, msgIdString.c_str());
 }
