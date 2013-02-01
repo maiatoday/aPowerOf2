@@ -15,8 +15,6 @@ SpaceMessage::SpaceMessage() {
 	msgId = MSG_ID_UNKNOWN;
 }
 
-
-
 SpaceMessage::~SpaceMessage() {
 	if (root) {
 		json_decref(root);
@@ -46,8 +44,6 @@ void SpaceMessage::setMsgIdFromString() {
 	}
 
 }
-
-
 
 } /* namespace comms */
 

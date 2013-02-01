@@ -58,12 +58,10 @@ void SpaceReporter::update(vector<ofPoint>& userCenters, ofColor foreground) {
 			//get and answer
 			string answer = receive();
 			if (!answer.empty()) {
-				ofLog(OF_LOG_NOTICE, "client: *** server said %s",
-						answer.c_str());
+				ofLog(OF_LOG_NOTICE, "client: *** server said %s", answer.c_str());
 				RxSpaceMessage * inMsg = new RxSpaceMessage(answer.c_str());
 
-				ofLog(OF_LOG_NOTICE, "client: *** msgId answer %s",
-						inMsg->getMsgIdString().c_str());
+				ofLog(OF_LOG_NOTICE, "client: *** msgId answer %s", inMsg->getMsgIdString().c_str());
 				// get info from inMsg and save it somewhere so testApp can ask us
 				delete inMsg;
 			}

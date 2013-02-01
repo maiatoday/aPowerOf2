@@ -46,47 +46,47 @@ public:
 	comms::SpaceReporter spaceReport;
 	string msgTx, msgRx;
 
+	void getUserCenters(ofxUserGenerator &userGenerator);
+
 	/*** kinect stuff ****/
-	void	setupRecording(string _filename = "");
-	void	setupPlayback(string _filename);
+	void setupRecording(string _filename = "");
+	void setupPlayback(string _filename);
 	void setupKinect();
 	void updateKinect();
 	void drawKinect();
-	string	generateFileName();
+	string generateFileName();
 
-	bool				isLive, isTracking, isRecording, isCloud, isCPBkgnd, isMasking;
-	bool				isTrackingHands, isFiltering;
+	bool isLive, isTracking, isRecording, isCloud, isCPBkgnd, isMasking;
+	bool isTrackingHands, isFiltering;
 
-	ofxOpenNIContext	recordContext, playContext;
-	ofxDepthGenerator	recordDepth, playDepth;
+	ofxOpenNIContext recordContext, playContext;
+	ofxDepthGenerator recordDepth, playDepth;
 
 #ifdef USE_IR
-	ofxIRGenerator		recordImage, playImage;
+	ofxIRGenerator recordImage, playImage;
 #else
-	ofxImageGenerator	recordImage, playImage;
+	ofxImageGenerator recordImage, playImage;
 #endif
 
-	ofxHandGenerator	recordHandTracker, playHandTracker;
+	ofxHandGenerator recordHandTracker, playHandTracker;
 
-	ofxUserGenerator	recordUser, playUser;
-	ofxOpenNIRecorder	oniRecorder;
+	ofxUserGenerator recordUser, playUser;
+	ofxOpenNIRecorder oniRecorder;
 
 #if defined (TARGET_OSX) //|| defined(TARGET_LINUX) // only working on Mac/Linux at the moment (but on Linux you need to run as sudo...)
-	ofxHardwareDriver	hardware;
+	ofxHardwareDriver hardware;
 #endif
 
-	void				drawMasks();
-	void				drawPointCloud(ofxUserGenerator * user_generator, int userID);
+	void drawMasks();
+	void drawPointCloud(ofxUserGenerator * user_generator, int userID);
 
-	int					nearThreshold, farThreshold;
-	int					pointCloudRotationY;
+	int nearThreshold, farThreshold;
+	int pointCloudRotationY;
 
-	ofImage				allUserMasks, user1Mask, user2Mask, depthRangeMask;
+	ofImage allUserMasks, user1Mask, user2Mask, depthRangeMask;
 
-	float				filterFactor;
+	float filterFactor;
 	/*** kinect stuff end ****/
-
-
 
 };
 

@@ -36,7 +36,6 @@ public:
 		return msgId;
 	}
 
-
 protected:
 	json_t *root;
 	json_error_t error;
