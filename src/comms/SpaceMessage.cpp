@@ -35,9 +35,9 @@ string SpaceMessage::toString() {
 }
 
 void SpaceMessage::setMsgIdFromString() {
-	if (msgIdString == "hello") {
+	if (msgIdString == MSG_ID_HELLO_STRING) {
 		msgId = MSG_ID_HELLO;
-	} else if (msgIdString == "spaceInfo") {
+	} else if (msgIdString == MSG_ID_SPACE_INFO_STRING) {
 		msgId = MSG_ID_SPACE_INFO;
 	} else {
 		msgId = MSG_ID_UNKNOWN;

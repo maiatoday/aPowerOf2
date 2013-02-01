@@ -9,7 +9,8 @@
 #define SPACEBROADCASTER_H_
 #include "ofxNetwork.h"
 #include "ofxXmlSettings.h"
-#include "ofxJansson.h"
+#include "RxSpaceMessage.h"
+#include "TxSpaceMessage.h"
 namespace comms {
 class SpaceBroadcaster: public ofxTCPServer {
 public:

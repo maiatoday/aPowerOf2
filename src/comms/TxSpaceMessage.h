@@ -16,7 +16,6 @@ class TxSpaceMessage: public comms::SpaceMessage {
 public:
 	TxSpaceMessage();
 	virtual ~TxSpaceMessage();
-protected:
 	void makeHelloResponse();
 	void makeSpaceInfoResponse();
 };

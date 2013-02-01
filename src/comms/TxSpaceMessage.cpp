@@ -20,15 +20,15 @@ TxSpaceMessage::~TxSpaceMessage() {
 
 //------------- response message methods ------------
 void TxSpaceMessage::makeHelloResponse() {
-	msgIdString = MSG_ID_HELLO;
+	msgIdString = MSG_ID_HELLO_STRING;
 	setMsgIdFromString();
-	root = json_pack("{s:s}", MSGID_KEY, msgIdString);
+	root = json_pack("{s:s}", MSGID_KEY, msgIdString.c_str());
 }
 
 void TxSpaceMessage::makeSpaceInfoResponse() {
-	msgIdString = MSG_ID_SPACE_INFO;
+	msgIdString = MSG_ID_SPACE_INFO_STRING;
 	setMsgIdFromString();
-	root = json_pack("{s:s}", MSGID_KEY, msgIdString);
+	root = json_pack("{s:s}", MSGID_KEY, msgIdString.c_str());
 }
 
 } /* namespace comms */

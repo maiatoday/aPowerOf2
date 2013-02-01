@@ -48,27 +48,17 @@ void SpaceReporter::update() {
 			if (!answer.empty()) {
 				ofLog(OF_LOG_NOTICE, "client: *** server said %s",
 						answer.c_str());
-				root = json_loads(answer.c_str(), 0, &error);
+				RxSpaceMessage * inMsg = new RxSpaceMessage(answer.c_str());
 
-				if (root) {
-					string res = json.getValueS(root, "msgId", "");
-					ofLog(OF_LOG_NOTICE, "client: *** msgId answer %s",
-											res.c_str());
-					json_decref(root);
-				}
-				}
-				//		tcpClient.send(msgTx);
-				//
-				//		//if data has been sent lets update our text
-				//		string str = tcpClient.receive();
-				//		if( str.length() > 0 ){
-				//			msgRx = str;
-				//		}
-			} else {
-				weConnected = ofxTCPClient::setup(serverAddress, serverPort);
+				ofLog(OF_LOG_NOTICE, "client: *** msgId answer %s",
+						inMsg->getMsgIdString().c_str());
+				delete inMsg;
 			}
+		} else {
+			weConnected = ofxTCPClient::setup(serverAddress, serverPort);
 		}
 	}
+}
 
 } /* namespace comms */
 

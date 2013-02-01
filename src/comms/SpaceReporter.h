@@ -10,8 +10,8 @@
 
 #include "ofxNetwork.h"
 #include "ofxXmlSettings.h"
-#include "ofxJansson.h"
 #include "TxSpaceMessage.h"
+#include "RxSpaceMessage.h"
 
 namespace comms {
 class SpaceReporter: public ofxTCPClient {
@@ -30,10 +30,6 @@ private:
 	float counter;
 	unsigned int connectTime;
 	unsigned int deltaTime;
-
-	json_t *root;
-	json_error_t error;
-	ofxJansson json;
 };
 } /* namespace comms */
 #endif /* SPACEREPORTER_H_ */

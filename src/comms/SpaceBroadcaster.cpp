@@ -56,7 +56,6 @@ void SpaceBroadcaster::handleMessage(const int i, const string msg) {
 		outmsg->makeSpaceInfoResponse();
 		break;
 	}
-//	json_t* root = json_pack("{s:s}", "fg", "ttt");
 	send(i, outmsg->toString());
 	delete(inmsg);
 	delete(outmsg);
