@@ -179,14 +179,13 @@ void testApp::updateKinect() {
 void testApp::getUserCenters(ofxUserGenerator &userGenerator) {
 	userCenters.clear();
 	int numUsers = userGenerator.getNumberOfTrackedUsers();
-	for (int i = 0; i < numUsers; i++) {
+	//NOTE user number counts from 1 not from 0
+	for (int i = 1; i <= numUsers; i++) {
 		ofxTrackedUser* user = userGenerator.getTrackedUser(i);
+		XnPoint3D xnPoint;
+		user->getProjectedCenter(xnPoint);
 		ofPoint point;
-		point.set(10,10,10);
-		// TODO the coordinates are in the wrong format!! convert from world to projected
-//		point.x = user->center.X;
-//		point.y = user->center.Y;
-//		point.z = user->center.Z;
+		point.set(xnPoint.X,xnPoint.Y,xnPoint.Z);
 		userCenters.push_back(point);
 	}
 }
