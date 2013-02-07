@@ -15,12 +15,15 @@
 #include "UserDetail.h"
 
 namespace comms {
+/**
+ * Reports the users it can see for this client Node to the broadcaster and gets info about other nodes
+ */
 class SpaceReporter: public ofxTCPClient {
 public:
 	SpaceReporter();
 	virtual ~SpaceReporter();
 	void setup();
-	void update(vector<UserDetail*>& userDetail, ofColor foreground);
+	void update(vector<UserDetail*>& usersDetail, ofColor foreground);
 private:
 	bool weConnected;
 	ofxXmlSettings XML;

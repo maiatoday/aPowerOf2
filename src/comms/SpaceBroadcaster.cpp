@@ -12,6 +12,7 @@ namespace comms {
 SpaceBroadcaster::SpaceBroadcaster() {
 	serverPort = 11999;
 	serverAddress = "127.0.0.1";
+	serverActive = false;
 }
 
 SpaceBroadcaster::~SpaceBroadcaster() {
@@ -26,17 +27,24 @@ void SpaceBroadcaster::setup() {
 	string myLocalAddress = "localhost"; // TODO get my local ip Address somehow
 	if ((serverAddress == "127.0.0.1") || (serverAddress == myLocalAddress)) {
 		// I am the server
+		ofLog(OF_LOG_NOTICE, "This Node is the server %s", serverAddress.c_str());
+		serverActive = true;
 		ofxTCPServer::setup(serverPort);
 	}
 }
 
+/**
+ * Check if there are messages from the connected nodes, update the details for the nodes and send it to the clients.
+ */
 void SpaceBroadcaster::update() {
 //	ofLog(OF_LOG_NOTICE, "num connected clients  %d ", getNumClients());
-	//for each client lets answer their message
-	for (int i = 0; i < getNumClients(); i++) {
-		string msg = receive(i);
-		if (!msg.empty()) {
-			handleMessage(i, msg);
+	if (isServerActive()) {
+		//for each client lets answer their message
+		for (int i = 0; i < getNumClients(); i++) {
+			string msg = receive(i);
+			if (!msg.empty()) {
+				handleMessage(i, msg);
+			}
 		}
 	}
 }
@@ -45,24 +53,27 @@ void SpaceBroadcaster::update() {
  * handle the incoming messages by responding with the correct response
  */
 void SpaceBroadcaster::handleMessage(const int i, const string msg) {
-	ofLog(OF_LOG_NOTICE, "server: the msg from client %d is %s", i,
-				msg.c_str());
+	ofLog(OF_LOG_NOTICE, "server: the msg from client %d is %s", i, msg.c_str());
 
 	RxSpaceMessage* inmsg = new RxSpaceMessage(msg);
 	TxSpaceMessage* outmsg = new TxSpaceMessage();
-	switch(inmsg->getMsgId()) {
+	switch (inmsg->getMsgId()) {
 	case MSG_ID_HELLO:
+		//Register the node in the nodes hashmap
+//		NodeDetail newNode = new NodeDetail();
+//		newNode.setFgColor(inmsg->getColor());
+//		nodes.add(newNode);
 		outmsg->makeHelloResponse();
 		break;
 	case MSG_ID_SPACE_INFO:
+		// update the nodes hashmap with this node' info
+
 		outmsg->makeSpaceInfoAllResponse();
 		break;
 	}
 	send(i, outmsg->toString());
-	delete(inmsg);
-	delete(outmsg);
-
-
+	delete (inmsg);
+	delete (outmsg);
 
 }
 

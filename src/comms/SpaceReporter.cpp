@@ -38,7 +38,7 @@ void SpaceReporter::setup() {
 /**
  * update with the latest values. At regular intervals this info will be sent to the server
  */
-void SpaceReporter::update(vector<UserDetail*>& userCenters, ofColor foreground) {
+void SpaceReporter::update(vector<UserDetail*>& usersDetail, ofColor foreground) {
 	//do something on a regular interval, either retry connection or send a message
 	deltaTime = ofGetElapsedTimeMillis() - connectTime;
 	if (deltaTime > updateTime) {
@@ -50,8 +50,8 @@ void SpaceReporter::update(vector<UserDetail*>& userCenters, ofColor foreground)
 				outmsg->makeHelloResponse();
 				sendHello = false;
 			} else {
-				ofLog(OF_LOG_NOTICE, "client: *** tracked %d users", userCenters.size());
-				outmsg->makeSpaceInfoResponse(userCenters, foreground);
+				ofLog(OF_LOG_NOTICE, "client: *** tracked %d users", usersDetail.size());
+				outmsg->makeSpaceInfoResponse(usersDetail, foreground);
 			}
 			send(outmsg->toString());
 			delete outmsg;

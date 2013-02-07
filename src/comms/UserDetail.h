@@ -10,6 +10,9 @@
 
 #include "ofPoint.h"
 
+/**
+ * Contains the detail of one User as seen by the kinect
+ */
 class UserDetail {
 public:
 	UserDetail();
