@@ -32,8 +32,9 @@ private:
 	string serverAddress;
 	unsigned int serverPort;
 	void handleMessage(const int i, const string msg);
-	vector<NodeDetail*> nodes;
+	map<string, NodeDetail*> nodes;
 	bool serverActive;
+	string myLocalAddress;
 
 };
 } /* namespace comms */

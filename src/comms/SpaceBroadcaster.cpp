@@ -7,12 +7,14 @@
 
 #include "SpaceBroadcaster.h"
 #include "SpaceMessage.h"
+#include "IpUtils.h"
 
 namespace comms {
 SpaceBroadcaster::SpaceBroadcaster() {
 	serverPort = 11999;
-	serverAddress = "127.0.0.1";
+	serverAddress = "localhost";
 	serverActive = false;
+	myLocalAddress = IpUtils::getMyIp();
 }
 
 SpaceBroadcaster::~SpaceBroadcaster() {
@@ -21,10 +23,11 @@ SpaceBroadcaster::~SpaceBroadcaster() {
 
 void SpaceBroadcaster::setup() {
 	if (XML.loadFile("mySettings.xml")) {
-		serverAddress = XML.getValue("NETWORK:SERVER_ADDRESS", "localhost");
+		serverAddress = XML.getValue("NETWORK:SERVER_ADDRESS", "127.0.0.1");
+		ofLog(OF_LOG_NOTICE, "Server IP setting is %s", serverAddress.c_str());
 		serverPort = XML.getValue("NETWORK:SERVER_PORT", 11999);
 	}
-	string myLocalAddress = "localhost"; // TODO get my local ip Address somehow
+	ofLog(OF_LOG_NOTICE, "My IP is %s", myLocalAddress.c_str());
 	if ((serverAddress == "127.0.0.1") || (serverAddress == myLocalAddress)) {
 		// I am the server
 		ofLog(OF_LOG_NOTICE, "This Node is the server %s", serverAddress.c_str());
