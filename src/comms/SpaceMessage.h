@@ -8,10 +8,16 @@
 #ifndef SPACEMESSAGE_H_
 #define SPACEMESSAGE_H_
 #include "ofConstants.h"
+#include "ofColor.h"
+#include "ofPoint.h"
 #include "ofxJansson.h"
-#include "jansson.h"
 
 #define MSGID_KEY "msgId"
+#define MSG_FGCOLOR_KEY "fgcolor"
+#define MSG_USERS_KEY "users"
+#define MSG_CENTRE_KEY "center"
+#define MSG_HANDL_KEY "handLeft"
+#define MSG_HANDR_KEY "handRight"
 
 #define MSG_ID_UNKNOWN 0
 #define MSG_ID_HELLO 1
@@ -41,6 +47,10 @@ protected:
 	json_error_t error;
 	string msgIdString;
 	int msgId;
+	void jsonToColor(json_t* obj, ofColor& color);
+	void jsonToPoint(json_t* obj, ofPoint& point);
+	json_t* colorToJson(ofColor color);
+	json_t* pointToJson(ofPoint point);
 
 //	ofxJansson json;
 };
