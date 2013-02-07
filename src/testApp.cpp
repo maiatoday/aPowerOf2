@@ -183,11 +183,26 @@ void testApp::getUserCenters(ofxUserGenerator &userGenerator) {
 	for (int i = 1; i <= numUsers; i++) {
 		ofxTrackedUser* user = userGenerator.getTrackedUser(i);
 		XnPoint3D xnPoint;
-		user->getProjectedCenter(xnPoint);
 		ofPoint point;
-		point.set(xnPoint.X,xnPoint.Y,xnPoint.Z);
 		UserDetail* newUser = new UserDetail();
+
+		//Get center
+		user->getProjectedCenter(xnPoint);
+		point.set(xnPoint.X,xnPoint.Y,xnPoint.Z);
 		newUser->setCenter(point);
+
+		if (user->skeletonCalibrated) {
+		    //Get LHand if there
+			xnPoint = user->right_lower_arm.position[0];
+			point.set(xnPoint.X, xnPoint.Y, xnPoint.Z);
+			newUser->setHandLeft(point);
+
+			//Get RHand if there
+			xnPoint = user->left_lower_arm.position[0];
+			point.set(xnPoint.X, xnPoint.Y, xnPoint.Z);
+			newUser->setHandRight(point);
+		}
+
 		usersDetail.push_back(newUser);
 	}
 }

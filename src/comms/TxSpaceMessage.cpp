@@ -36,7 +36,14 @@ void TxSpaceMessage::makeSpaceInfoResponse(vector<UserDetail*>& usersDetail, ofC
 
 		json_t* u = json_object();
 		json_object_set_new(u, MSG_CENTRE_KEY, c);
-
+		if (usersDetail[i]->isHandLset()) {
+			json_t* hl = pointToJson(usersDetail[i]->getHandLeft());
+			json_object_set_new(u, MSG_HANDL_KEY, hl);
+		}
+		if (usersDetail[i]->isHandRset()) {
+			json_t* hr = pointToJson(usersDetail[i]->getHandRight());
+			json_object_set_new(u, MSG_HANDR_KEY, hr);
+		}
 		json_array_append_new(users, u);
 
 	}
