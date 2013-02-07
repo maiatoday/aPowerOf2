@@ -8,11 +8,9 @@
 #include "NodeDetail.h"
 
 NodeDetail::NodeDetail() {
-	// TODO Auto-generated constructor stub
 
 }
 
 NodeDetail::~NodeDetail() {
-	// TODO Auto-generated destructor stub
 }
 

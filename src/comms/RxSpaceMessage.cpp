@@ -10,7 +10,6 @@
 namespace comms {
 
 RxSpaceMessage::RxSpaceMessage() {
-	// TODO Auto-generated constructor stub
 
 }
 /**
@@ -20,7 +19,7 @@ RxSpaceMessage::RxSpaceMessage() {
  */
 RxSpaceMessage::RxSpaceMessage(const string message) {
 	root = json_loads(message.c_str(), 0, &error);
-	msgIdString = getValueS(root, MSGID_KEY, "");
+	msgIdString = getValueS(root, MSG_ID_KEY, "");
 	setMsgIdFromString();
 	extractMessageContents();
 }
@@ -31,7 +30,18 @@ RxSpaceMessage::~RxSpaceMessage() {
 //--------- receive message methods  -----------------
 
 void RxSpaceMessage::extractMessageContents() {
-
+	switch (msgId) {
+	case MSG_ID_HELLO:
+		//TODO extract contents for hello message
+		break;
+	case MSG_ID_SPACE_INFO:
+		//TODO extract contents for hello message
+		break;
+	case MSG_ID_SPACE_INFO_ALL:
+		//TODO extract contents for hello message
+		break;
+	}
+	//TODO extract contents for spaceInfo Message
 }
 
 } /* namespace comms */

@@ -22,7 +22,7 @@ TxSpaceMessage::~TxSpaceMessage() {
 void TxSpaceMessage::makeHelloResponse() {
 	msgIdString = MSG_ID_HELLO_STRING;
 	setMsgIdFromString();
-	root = json_pack("{s:s}", MSGID_KEY, msgIdString.c_str());
+	root = json_pack("{s:s}", MSG_ID_KEY, msgIdString.c_str());
 
 }
 
@@ -50,7 +50,7 @@ void TxSpaceMessage::makeSpaceInfoResponse(vector<UserDetail>& usersDetail, ofCo
 	json_t* color = colorToJson(foreground);
 
 	root = json_object();
-	json_object_set_new(root, MSGID_KEY, json_string(msgIdString.c_str()));
+	json_object_set_new(root, MSG_ID_KEY, json_string(msgIdString.c_str()));
 	json_object_set_new(root, MSG_FGCOLOR_KEY, color);
 	json_object_set_new(root, MSG_USERS_KEY, users);
 
@@ -58,9 +58,10 @@ void TxSpaceMessage::makeSpaceInfoResponse(vector<UserDetail>& usersDetail, ofCo
 }
 
 void TxSpaceMessage::makeSpaceInfoAllResponse() {
+	//TODO fill the message with all the node info
 	msgIdString = MSG_ID_SPACE_INFO_ALL_STRING;
 	setMsgIdFromString();
-	root = json_pack("{s:s}", MSGID_KEY, msgIdString.c_str());
+	root = json_pack("{s:s}", MSG_ID_KEY, msgIdString.c_str());
 }
 
 } /* namespace comms */

@@ -19,7 +19,6 @@ SpaceReporter::SpaceReporter() {
 }
 
 SpaceReporter::~SpaceReporter() {
-	// TODO Auto-generated destructor stub
 }
 
 void SpaceReporter::setup() {

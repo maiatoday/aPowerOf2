@@ -12,20 +12,18 @@
 #include "ofPoint.h"
 #include "ofxJansson.h"
 
-#define MSGID_KEY "msgId"
+#define MSG_ID_KEY "msgId"
 #define MSG_FGCOLOR_KEY "fgcolor"
 #define MSG_USERS_KEY "users"
 #define MSG_CENTRE_KEY "center"
 #define MSG_HANDL_KEY "handLeft"
 #define MSG_HANDR_KEY "handRight"
 
-#define MSG_ID_UNKNOWN 0
-#define MSG_ID_HELLO 1
-#define MSG_ID_SPACE_INFO 2
-#define MSG_ID_SPACE_INFO_ALL 3
+#define MSG_ID_UNKNOWN_STRING "unknown"
 #define MSG_ID_HELLO_STRING "hello"
 #define MSG_ID_SPACE_INFO_STRING "spaceInfo"
 #define MSG_ID_SPACE_INFO_ALL_STRING "spaceInfoAll"
+enum MsgIdEnum { MSG_ID_UNKNOWN = 0, MSG_ID_HELLO, MSG_ID_SPACE_INFO,  MSG_ID_SPACE_INFO_ALL};
 
 namespace comms {
 class SpaceMessage: public ofxJansson {
@@ -46,7 +44,7 @@ protected:
 	json_t *root;
 	json_error_t error;
 	string msgIdString;
-	int msgId;
+	MsgIdEnum msgId;
 	void jsonToColor(json_t* obj, ofColor& color);
 	void jsonToPoint(json_t* obj, ofPoint& point);
 	json_t* colorToJson(ofColor color);

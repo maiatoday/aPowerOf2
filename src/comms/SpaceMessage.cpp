@@ -20,7 +20,6 @@ SpaceMessage::~SpaceMessage() {
 		json_decref(root);
 	}
 }
-
 string SpaceMessage::toString() {
 
 	string reply = "";
@@ -42,7 +41,6 @@ void SpaceMessage::setMsgIdFromString() {
 	} else {
 		msgId = MSG_ID_UNKNOWN;
 	}
-
 }
 
 /**

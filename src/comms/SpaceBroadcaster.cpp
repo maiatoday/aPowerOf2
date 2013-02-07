@@ -18,7 +18,6 @@ SpaceBroadcaster::SpaceBroadcaster() {
 }
 
 SpaceBroadcaster::~SpaceBroadcaster() {
-	// TODO Auto-generated destructor stub
 }
 
 void SpaceBroadcaster::setup() {
@@ -62,14 +61,14 @@ void SpaceBroadcaster::handleMessage(const int i, const string msg) {
 	TxSpaceMessage* outmsg = new TxSpaceMessage();
 	switch (inmsg->getMsgId()) {
 	case MSG_ID_HELLO:
-		//Register the node in the nodes hashmap
+		//TODO Register the node in the nodes hashmap
 //		NodeDetail newNode = new NodeDetail();
 //		newNode.setFgColor(inmsg->getColor());
 //		nodes.add(newNode);
 		outmsg->makeHelloResponse();
 		break;
 	case MSG_ID_SPACE_INFO:
-		// update the nodes hashmap with this node' info
+		//TODO update the nodes hashmap with this node' info
 
 		outmsg->makeSpaceInfoAllResponse();
 		break;
