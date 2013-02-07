@@ -12,6 +12,7 @@
 #include "ofxXmlSettings.h"
 #include "TxSpaceMessage.h"
 #include "RxSpaceMessage.h"
+#include "UserDetail.h"
 
 namespace comms {
 class SpaceReporter: public ofxTCPClient {
@@ -19,7 +20,7 @@ public:
 	SpaceReporter();
 	virtual ~SpaceReporter();
 	void setup();
-	void update(vector<ofPoint>& userCenters, ofColor foreground);
+	void update(vector<UserDetail*>& userDetail, ofColor foreground);
 private:
 	bool weConnected;
 	ofxXmlSettings XML;

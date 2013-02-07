@@ -9,6 +9,7 @@
 #include "ofxUI.h"
 #include "comms/SpaceBroadcaster.h"
 #include "comms/SpaceReporter.h"
+#include "comms/UserDetail.h"
 
 class testApp: public ofBaseApp {
 
@@ -29,7 +30,7 @@ public:
 	bool fullscreen;
 	uint moteCount;
 	ofColor mainDrawColor;
-	vector<ofPoint> userCenters;
+	vector<UserDetail*> usersDetail;
 
 	ofxUICanvas *gui;
 	void exit();

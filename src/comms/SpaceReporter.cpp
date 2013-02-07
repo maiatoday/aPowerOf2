@@ -38,7 +38,7 @@ void SpaceReporter::setup() {
 /**
  * update with the latest values. At regular intervals this info will be sent to the server
  */
-void SpaceReporter::update(vector<ofPoint>& userCenters, ofColor foreground) {
+void SpaceReporter::update(vector<UserDetail*>& userCenters, ofColor foreground) {
 	//do something on a regular interval, either retry connection or send a message
 	deltaTime = ofGetElapsedTimeMillis() - connectTime;
 	if (deltaTime > updateTime) {

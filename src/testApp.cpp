@@ -21,7 +21,7 @@ void testApp::setup() {
 	//*** comms stuff end ****
 
 	setupKinect();
-	userCenters.reserve(MAX_USERS);
+	usersDetail.reserve(MAX_USERS);
 
 }
 
@@ -107,7 +107,7 @@ void testApp::setupPlayback(string _filename) {
 //--------------------------------------------------------------
 void testApp::update() {
 	updateKinect();
-	spaceReport.update(userCenters, mainDrawColor);
+	spaceReport.update(usersDetail, mainDrawColor);
 	spaceBroadcast.update();
 }
 
@@ -177,7 +177,7 @@ void testApp::updateKinect() {
 }
 
 void testApp::getUserCenters(ofxUserGenerator &userGenerator) {
-	userCenters.clear();
+	usersDetail.clear();
 	int numUsers = userGenerator.getNumberOfTrackedUsers();
 	//NOTE user number counts from 1 not from 0
 	for (int i = 1; i <= numUsers; i++) {
@@ -186,7 +186,9 @@ void testApp::getUserCenters(ofxUserGenerator &userGenerator) {
 		user->getProjectedCenter(xnPoint);
 		ofPoint point;
 		point.set(xnPoint.X,xnPoint.Y,xnPoint.Z);
-		userCenters.push_back(point);
+		UserDetail* newUser = new UserDetail();
+		newUser->setCenter(point);
+		usersDetail.push_back(newUser);
 	}
 }
 

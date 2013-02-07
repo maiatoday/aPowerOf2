@@ -11,6 +11,7 @@
 #include "SpaceMessage.h"
 #include "ofPoint.h"
 #include "ofColor.h"
+#include "UserDetail.h"
 
 namespace comms {
 
@@ -19,7 +20,7 @@ public:
 	TxSpaceMessage();
 	virtual ~TxSpaceMessage();
 	// Reporter Tx Messages - client
-	void makeSpaceInfoResponse(vector<ofPoint>& userCenters, ofColor foreground);
+	void makeSpaceInfoResponse(vector<UserDetail*>& usersDetail, ofColor foreground);
 
 	// Broadcaster Tx Messages - server
 	void makeHelloResponse();
