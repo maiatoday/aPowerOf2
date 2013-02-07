@@ -20,7 +20,7 @@ public:
 	TxSpaceMessage();
 	virtual ~TxSpaceMessage();
 	// Reporter Tx Messages - client
-	void makeSpaceInfoResponse(vector<UserDetail*>& usersDetail, ofColor foreground);
+	void makeSpaceInfoResponse(vector<UserDetail>& usersDetail, ofColor foreground);
 
 	// Broadcaster Tx Messages - server
 	void makeHelloResponse();

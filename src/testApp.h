@@ -30,7 +30,7 @@ public:
 	bool fullscreen;
 	uint moteCount;
 	ofColor mainDrawColor;
-	vector<UserDetail*> usersDetail;
+	vector<UserDetail> usersDetail;
 
 	ofxUICanvas *gui;
 	void exit();

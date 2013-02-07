@@ -23,7 +23,7 @@ public:
 	SpaceReporter();
 	virtual ~SpaceReporter();
 	void setup();
-	void update(vector<UserDetail*>& usersDetail, ofColor foreground);
+	void update(vector<UserDetail>& usersDetail, ofColor foreground);
 private:
 	bool weConnected;
 	ofxXmlSettings XML;

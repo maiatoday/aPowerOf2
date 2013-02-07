@@ -26,17 +26,17 @@ public:
 		this->fgColor = fgColor;
 	}
 
-	const vector<UserDetail*>& getUsers() const {
+	const vector<UserDetail>& getUsers() const {
 		return users;
 	}
 
-	void setUsers(const vector<UserDetail*>& users) {
+	void setUsers(const vector<UserDetail>& users) {
 		this->users = users;
 	}
 
 protected:
 	ofColor fgColor;
-	vector<UserDetail*> users;
+	vector<UserDetail> users;
 };
 
 #endif /* NODEDETAIL_H_ */
